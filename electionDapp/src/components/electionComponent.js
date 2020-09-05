@@ -15,7 +15,7 @@ class ElectionComponent extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('A election Id was submitted: ' + this.state.electionId);
+        alert('An election Id was submitted: ' + this.state.electionId);
         event.preventDefault();
     }
 

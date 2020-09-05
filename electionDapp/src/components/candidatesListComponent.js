@@ -2,13 +2,13 @@ import React from 'react';
 import { Table, Row, Col } from 'reactstrap';
 
 class candidatesListComponent extends React.Component {
-    renderTable () {
-        return this.props.names.map ((name, index) => {
+    renderTable() {
+        return this.props.names.map((name, index) => {
             return (
-                <tr key = { name }>
-                    <td>{ index + 1 }</td>
-                    <td>{ name }</td>
-                    <td></td>
+                <tr key={name}>
+                    <td>{index + 1}</td>
+                    <td>{name}</td>
+                    <td>{this.props.votes[index]}</td>
                 </tr>
             )
         })
@@ -33,7 +33,7 @@ class candidatesListComponent extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                { this.renderTable () }
+                                {this.renderTable()}
                             </tbody>
                         </Table>
                     </Col>

@@ -11,8 +11,10 @@ class App extends Component {
     super ()
     this.state = {
       voting : null,
-      candidates : []
+      candidates : [],
+      votes : []
     }
+    this.data = this.data.bind(this);
   }
 
   componentDidMount () {
@@ -28,11 +30,19 @@ class App extends Component {
       voting
     });
     const candidates = await voting.methods.getCandidates ().call ();
+    var v = [];
+    for(var c in candidates){
+      console.log(c);
+      v.push(web3.utils.hexToNumber(await voting.methods.totalVotesFor(candidates[c]).call()));
+    }
     this.setState ({
-      candidates : candidates.map (name => web3.utils.hexToAscii(name))
+      candidates : candidates.map(name => web3.utils.hexToAscii(name)),
+      votes: v.map(votes => votes)
     });
-    console.log(this.state.candidates);
+    console.log(this.state.votes);
   }
+
+  
 
   render () {
     return (
@@ -40,10 +50,10 @@ class App extends Component {
         <ElectionComponent></ElectionComponent>
         <Row>
           <Col lg="6">
-            <CandidatesListComponent names = { this.state.candidates }></CandidatesListComponent>
+            <CandidatesListComponent names = { this.state.candidates } votes = {this.state.votes} ></CandidatesListComponent>
           </Col>
           <Col lg="6">
-            <VoteComponent></VoteComponent>
+            <VoteComponent update = {this.data}></VoteComponent>
           </Col>
         </Row>
       </div>
