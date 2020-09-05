@@ -2,7 +2,17 @@ import React from 'react';
 import { Table, Row, Col } from 'reactstrap';
 
 class candidatesListComponent extends React.Component {
-
+    renderTable () {
+        return this.props.names.map ((name, index) => {
+            return (
+                <tr key = { name }>
+                    <td>{ index + 1 }</td>
+                    <td>{ name }</td>
+                    <td></td>
+                </tr>
+            )
+        })
+    }
 
     render() {
         return (
@@ -17,27 +27,13 @@ class candidatesListComponent extends React.Component {
                         <Table bordered>
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Name</th>
-                                    <th>Address</th>
+                                    <th>Votes</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>{ this.props.names [0] }</td>
-                                    <td>Otto</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                </tr>
+                                { this.renderTable () }
                             </tbody>
                         </Table>
                     </Col>

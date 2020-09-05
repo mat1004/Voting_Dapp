@@ -11,7 +11,7 @@ class App extends Component {
     super ()
     this.state = {
       voting : null,
-      candidates : [],
+      candidates : []
     }
   }
 
@@ -29,7 +29,6 @@ class App extends Component {
     });
     const candidates = await voting.methods.getCandidates ().call ();
     this.setState ({
-      //candidates : web3.utils.hexToAscii(candidates [0]).trim ()
       candidates : candidates.map (name => web3.utils.hexToAscii(name))
     });
     console.log(this.state.candidates);
@@ -41,7 +40,7 @@ class App extends Component {
         <ElectionComponent></ElectionComponent>
         <Row>
           <Col lg="6">
-            <CandidatesListComponent name = { this.state.candidates }></CandidatesListComponent>
+            <CandidatesListComponent names = { this.state.candidates }></CandidatesListComponent>
           </Col>
           <Col lg="6">
             <VoteComponent></VoteComponent>
